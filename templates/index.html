@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>File Upload Hi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css">
+  </head>
+ 
+  <body>
+    <h1>File Upload Nets</h1>
+    <form action="{{ url_for('upload_files') }}" class="dropzone" id="my-dropzone">
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    
+    <script>
+      Dropzone.autoDiscover = false;
+      
+      $(function() {
+        var myDropzone = new Dropzone("#my-dropzone");
+        myDropzone.on("success", function(file) {
+          // Called when all files in the queue finish uploading.
+        // window.location = "{{ url_for('upload_files') }}";
+          $("#board").append("<div class='box'> Just added div </div>");
+        });
+
+       
+      })
+    </script>
+
+     <div id="board">
+      {% if finname %}
+      <h1>Hello {{ finname }}!</h1>
+    {% else %}
+      <h1>nada</h1> 
+      {% endif %}  
+      The Board is Empty, now add some div on it</div>
+  </body>
+</html>
